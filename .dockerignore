@@ -1,46 +1,45 @@
 # General
-.git/
+.git
 .gitignore
 .dockerignore
 Dockerfile
 README.md
-.vscode/
-node_modules/
-npm-debug.log
-yarn-error.log
+.vscode
+*.md
+mongodb/
 
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-pip-log.txt
-.python-version
+# Python backend ignores
+backend/__pycache__
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.pytest_cache
+backend/venv
+backend/env
 
-# Astro/Frontend specific
-public/build/
-src/
-astro.config.mjs
-svelte.config.js
-tsconfig.json
+# Node frontend ignores
+frontend/node_modules
+frontend/dist
+frontend/.astro
+frontend/.svelte
+frontend/.vite
+frontend/.vscode
+frontend/npm-debug.log
+frontend/yarn-error.log
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
 
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Editor directories and files
-.idea/
-*.sublime-project
-*.sublime-workspace
+# Miscellaneous files
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.tmp
+*.temp
 *.swp
 *.swo
-*.swn
 *.bak
-*.tmp
+*.orig

@@ -37,6 +37,14 @@ services:
     links:
       - mongo
 
+  recipebook:
+    image: jonro/recipebook:1.0
+    container_name: recipebook
+    hostname: recipebook
+    restart: always
+    ports:
+      - "8000:8000"
+
 networks:
   mongo:
     driver: bridge
