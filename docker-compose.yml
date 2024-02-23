@@ -38,7 +38,7 @@ services:
       - mongo
 
   recipebook:
-    image: jonro/recipebook:1.0
+    image: jonro/recipebook:1.0.1
     container_name: recipebook
     hostname: recipebook
     restart: always
