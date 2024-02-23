@@ -1,0 +1,46 @@
+# General
+.git/
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+.vscode/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+.python-version
+
+# Astro/Frontend specific
+public/build/
+src/
+astro.config.mjs
+svelte.config.js
+tsconfig.json
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp

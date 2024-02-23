@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    hostname: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo
+    volumes:
+      - ./mongodb/mongo-data:/data/db
+      - ./mongodb/mongo-config:/data/configdb
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    hostname: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_URL: "mongodb://mongo:27017"
+    ports:
+      - "8081:8081"
+    networks:
+      - mongo
+    depends_on:
+      - mongo
+    links:
+      - mongo
+
+networks:
+  mongo:
+    driver: bridge

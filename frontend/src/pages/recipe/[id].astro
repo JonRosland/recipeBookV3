@@ -1,0 +1,126 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import IngredientView from "../../components/IngredientView.svelte";
+import { getRecipe } from "../../components/APIFunctions.js";
+const { id } = Astro.params;
+
+let recipe = {
+  recipeName: "recipeName",
+  origin: "Origin",
+  category: "Category",
+  portion: 0,
+  region: "region",
+  ingredients: [],
+  steps: [],
+  notes: [],
+};
+
+recipe = await getRecipe(id);
+---
+
+<Layout title={recipe.recipeName}>
+  <div class="content">
+    <section class="title textLeft">
+      <div class="origin">
+        <h2>Opphav: {recipe.origin}</h2>
+        <h2>Kategori: {recipe.category}</h2>
+        <h2>Region: {recipe.region}</h2>
+      </div>
+      <div class="recipeName">
+        <h1>{recipe.recipeName}</h1>
+      </div>
+      <div class="edit">
+        <a href={"/"}> Alle oppskrifter</a>
+        <a href={"/edit/" + id}> Rediger oppskrift</a>
+        <!-- <p><myBbutton> Rediger</myBbutton></p> -->
+      </div>
+    </section>
+    <IngredientView recipe={recipe} client:load />
+    <section class="notes">
+      <h3>Notater</h3>
+      <div class="textLeft">
+        <ul>
+          {recipe.notes.map((note) => <li>{note}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="method">
+      <h3>Fremgangsmåte</h3>
+      <div class="lextLeft">
+        <ol>
+          {recipe.steps.map((step) => <li>{step}</li>)}
+        </ol>
+      </div>
+    </section>
+  </div>
+</Layout>
+<style>
+  .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas:
+      "t t t"
+      "i n n"
+      "i m m";
+  }
+
+  main {
+    font-family: sans-serif;
+    min-width: 1000px;
+  }
+
+  .title {
+    grid-area: t;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas: "o rn rn rn e";
+  }
+
+  .recipeName {
+    text-align: center;
+    grid-area: rn;
+  }
+
+  .ingredients {
+    grid-area: i;
+  }
+
+  .notes {
+    grid-area: n;
+  }
+
+  .method {
+    grid-area: m;
+  }
+
+  .origin {
+    grid-area: o;
+  }
+
+  .edit {
+    text-align: right;
+    grid-area: e;
+  }
+
+  section {
+    border: 1px solid black;
+    margin: 0 1em 1em 0;
+    padding: 1em;
+    box-sizing: border-box;
+    flex: 2 1 40%; /* Grow to 40% of the container's width */
+    min-width: 300px; /* Minimum width before wrapping */
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    padding: 0;
+  }
+
+  .textLeft {
+    text-align: left;
+  }
+</style>

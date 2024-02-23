@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getRecipes } from "../components/APIFunctions.js";
+
+let recipes = [];
+
+recipes = await getRecipes();
+---
+
+<Layout title="Alle oppskrifter" />
+
+<a href="http://localhost:4321/newRecipe/"> Legg til ny oppskrift</a>
+<h1>Alle oppskrifter</h1>
+<ul>
+	{
+		recipes.map((recipe) => (
+			<li>
+				<a href={"http://localhost:4321/recipe/" + recipe._id}>
+					{recipe.recipeName}
+				</a>
+			</li>
+		))
+	}
+</ul>
