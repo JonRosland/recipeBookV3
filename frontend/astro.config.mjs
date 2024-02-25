@@ -8,6 +8,6 @@ export default defineConfig({
   integrations: [svelte()],
   output: "server",
   adapter: node({
-    mode: "middleware"
+    mode: "standalone"
   })
 });

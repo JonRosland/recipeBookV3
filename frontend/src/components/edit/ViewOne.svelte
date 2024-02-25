@@ -18,6 +18,7 @@
     let view = [];
     $: if ($isRecipe) {
         view = $recipeStore[element];
+        console.log("111", view);
     }
 </script>
 
@@ -25,7 +26,7 @@
     <h3>{title}</h3>
     <div>
         <input bind:value={newValue} placeholder={"Legg til " + title} />
-        <Button label={"Add " + title} onClick={updateElement} />
+        <Button label={"Legg til " + title} onClick={updateElement} />
     </div>
     <div class="textLeft">
         <h4>{view}</h4>

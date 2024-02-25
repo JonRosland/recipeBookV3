@@ -2,7 +2,7 @@
 
 import { MongoClient, ObjectId } from 'mongodb';
 
-const url = 'mongodb://root:root@localhost:27017';
+const url = 'mongodb://root:root@mongo:27017';
 //const dbName = 'RecipeDB';
 const client = new MongoClient(url);
 

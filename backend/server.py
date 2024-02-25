@@ -1,15 +1,19 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import json
-from flask import jsonify
+#from flask import jsonify
 
 def connectToDB():
-    #client = MongoClient("mongodb://root:root@localhost:27017")
-    client = MongoClient('localhost', 27017, username='root', password='root')
-    client.server_info()
+    client = MongoClient("mongodb://root:root@mongo:27017/")
+    print('about to connect')
+    #client = MongoClient('mongo', 27017, username='root', password='root')
+    print('past')
+    #client.server_info()
 
     db = client["RecipeDB"]
     db_recipe = db["Food"]
+
+    print('Connected to DB') 
 
     return db_recipe, client
 
@@ -44,7 +48,9 @@ def updateRecipe(id, data):
     return {"message": "Recipe updated"} if response.modified_count else {"message": "Recipe not found"}
 
 def addRecipe(recipe):
+    print('in add recipe')
     db_recipe, client = connectToDB()
+    print('after connected to db')
     recipe_id = db_recipe.insert_one(recipe)
     client.close()
     return recipe_id

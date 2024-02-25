@@ -27,8 +27,10 @@
     }
 
     let view = [];
+    $: console.log($isRecipe);
     $: if ($isRecipe) {
         view = $recipeStore[element];
+        console.log($isRecipe);
     }
 
     function swap(currentIndex, newIndex) {
@@ -52,7 +54,7 @@
         {:else}
             <input bind:value={newValue} placeholder={"Legg til " + title} />
         {/if}
-        <Button label={"Add " + title} onClick={updateElement} />
+        <Button label={"Legg til " + title} onClick={updateElement} />
     </div>
     <div class="textLeft">
         <ul>

@@ -29,13 +29,18 @@ def apiSearch(search):
 #     response = deleteRecipe(id)
 #     return jsonify(response), 200
 
-@app.route('/api/', methods=['POST'])
+@app.route('/api/newRecipe', methods=['POST'])
 def apiPOST():
+    print('in POST')
     data = request.json
     if not data:
         return jsonify({"message": "No input data provided"}), 400
     recipe_id = addRecipe(data)
     return jsonify({"recipe_id": str(recipe_id.inserted_id)}), 201
+
+@app.route('/api/test', methods=['GET'])
+def apitest():
+    return jsonify({'Connection':'success'}), 200
 
 @app.route('/api/<id>', methods=['GET'])
 def apiGET(id):
