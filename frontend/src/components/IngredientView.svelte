@@ -23,14 +23,13 @@
 <section class="ingredients">
     <h4>
         Porsjoner: {portionModifier + recipe.portion}
-
-        <button
-            on:click={handlePlus}
-            style="border: 2px solid black; padding: 5px 10px;">+</button
-        >
         <button
             on:click={handleMinus}
             style="border: 2px solid black; padding: 5px 10px;">-</button
+        >
+        <button
+            on:click={handlePlus}
+            style="border: 2px solid black; padding: 5px 10px;">+</button
         >
     </h4>
     <h2>Ingredienser</h2>

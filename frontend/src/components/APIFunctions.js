@@ -1,11 +1,10 @@
 //const IP = process.env.APP_IP || 'localhost';
 //const baseUrl = 'http://' + IP + ':4000/api/';
-const baseUrl = 'http://backend:4000/api/';
+const baseUrl = 'http://10.0.0.10:4000/api/';
 
-export async function getRecipe(id) {
+export async function apiGetRecipe(id) {
     try {
         const response = await fetch(baseUrl + id);
-        console.log('API getrecipe');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -16,10 +15,9 @@ export async function getRecipe(id) {
     }
 }
 
-export async function getRecipes() {
+export async function apiGetRecipes() {
     try {
         const response = await fetch(baseUrl);
-        console.log('API getrecipes');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -30,7 +28,7 @@ export async function getRecipes() {
     }
 }
 
-export async function updateRecipe(id, recipe) {
+export async function apiUpdateRecipe(id, recipe) {
     try {
         console.log('API update R 1');
         const response = await fetch(baseUrl + id, {
@@ -40,7 +38,6 @@ export async function updateRecipe(id, recipe) {
             },
             body: JSON.stringify(recipe),
         });
-        console.log('API updater2');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -51,9 +48,8 @@ export async function updateRecipe(id, recipe) {
     }
 }
 
-export async function postRecipe(recipe) {
+export async function apiPostRecipe(recipe) {
     try {
-        console.log('API post');
         const response = await fetch(baseUrl + 'newRecipe', {
             method: 'POST',
             headers: {

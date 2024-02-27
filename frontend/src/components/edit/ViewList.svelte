@@ -1,9 +1,10 @@
 <script>
     import {
         recipeStore,
-        updateRecipe,
-        isRecipe,
-        swapElements,
+        storeUpdateRecipe,
+        storeIsRecipe,
+        storeSwapElements,
+        storeDeleteElement,
     } from "../../stores/recipeStore.js";
     import Button from "../Button.svelte";
 
@@ -18,7 +19,7 @@
     }
 
     function updateElement() {
-        updateRecipe(element, newValue);
+        storeUpdateRecipe(element, newValue);
         if (element === "ingredients") {
             newValue = { name: "", quantity: null, unit: "" };
         } else {
@@ -27,16 +28,18 @@
     }
 
     let view = [];
-    $: console.log($isRecipe);
-    $: if ($isRecipe) {
+    $: if ($storeIsRecipe) {
         view = $recipeStore[element];
-        console.log($isRecipe);
     }
 
     function swap(currentIndex, newIndex) {
         if (newIndex >= 0 && newIndex < view.length) {
-            swapElements(element, currentIndex, newIndex);
+            storeSwapElements(element, currentIndex, newIndex);
         }
+    }
+
+    function deleteListElement(index) {
+        storeDeleteElement(element, index);
     }
 </script>
 
@@ -71,6 +74,10 @@
                             on:click={() => swap(index, index + 1)}
                             disabled={index === view.length - 1}>↓</button
                         >
+                        <Button
+                            label={"Slett"}
+                            onClick={deleteListElement(index)}
+                        />
                     </li>
                 {/each}
             {:else}

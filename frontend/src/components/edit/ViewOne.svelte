@@ -1,8 +1,8 @@
 <script>
     import {
         recipeStore,
-        updateRecipe,
-        isRecipe,
+        storeUpdateRecipe,
+        storeIsRecipe,
     } from "../../stores/recipeStore.js";
     import Button from "../Button.svelte";
 
@@ -11,14 +11,13 @@
 
     let newValue = "";
     function updateElement() {
-        updateRecipe(element, newValue);
+        storeUpdateRecipe(element, newValue);
         newValue = "";
     }
 
     let view = [];
-    $: if ($isRecipe) {
+    $: if ($storeIsRecipe) {
         view = $recipeStore[element];
-        console.log("111", view);
     }
 </script>
 
@@ -39,7 +38,7 @@
         margin: 0 1em 1em 0;
         padding: 1em;
         box-sizing: border-box;
-        flex: 2 1 40%; /* Grow to 40% of the container's width */
-        min-width: 300px; /* Minimum width before wrapping */
+        flex: 2 1 40%;
+        min-width: 300px;
     }
 </style>

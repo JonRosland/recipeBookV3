@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import IngredientView from "../../components/IngredientView.svelte";
-import { getRecipe } from "../../components/APIFunctions.js";
+import { apiGetRecipe } from "../../components/APIFunctions.js";
 const { id } = Astro.params;
 
 let recipe = {
@@ -15,7 +15,7 @@ let recipe = {
   notes: [],
 };
 
-recipe = await getRecipe(id);
+recipe = await apiGetRecipe(id);
 ---
 
 <Layout title={recipe.recipeName}>

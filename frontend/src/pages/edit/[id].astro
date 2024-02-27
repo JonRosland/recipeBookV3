@@ -9,7 +9,6 @@ const { id } = Astro.params;
 
 <Layout title={"Rediger oppskrift"}>
     <div class="content">
-        <Manipulation id={id} client:load />
         <ViewList title="Ingredienser" element="ingredients" client:load />
         <ViewList title="Fremgangsmåte" element="steps" client:load />
         <ViewList title="Notater" element="notes" client:load />
@@ -18,6 +17,7 @@ const { id } = Astro.params;
         <ViewOne title="Porsjoner" element="portion" client:load />
         <ViewOne title="Kategori" element="category" client:load />
         <ViewOne title="Region" element="region" client:load />
+        <Manipulation id={id} client:load />
     </div>
 </Layout>
 
