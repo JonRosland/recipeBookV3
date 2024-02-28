@@ -1,8 +1,8 @@
 //const IP = process.env.APP_IP || 'localhost';
 //const baseUrl = 'http://' + IP + ':4000/api/';
-const baseUrl = 'http://10.0.0.10:4000/api/';
+const baseUrl = 'http://localhost:4000/api/';
 
-export async function apiGetRecipe(id) {
+export async function getRecipeApi(id) {
     try {
         const response = await fetch(baseUrl + id);
         if (!response.ok) {
@@ -15,7 +15,7 @@ export async function apiGetRecipe(id) {
     }
 }
 
-export async function apiGetRecipes() {
+export async function getRecipesApi() {
     try {
         const response = await fetch(baseUrl);
         if (!response.ok) {
@@ -28,9 +28,8 @@ export async function apiGetRecipes() {
     }
 }
 
-export async function apiUpdateRecipe(id, recipe) {
+export async function updateRecipeApi(id, recipe) {
     try {
-        console.log('API update R 1');
         const response = await fetch(baseUrl + id, {
             method: 'PUT',
             headers: {
@@ -48,7 +47,7 @@ export async function apiUpdateRecipe(id, recipe) {
     }
 }
 
-export async function apiPostRecipe(recipe) {
+export async function postRecipeApi(recipe) {
     try {
         const response = await fetch(baseUrl + 'newRecipe', {
             method: 'POST',

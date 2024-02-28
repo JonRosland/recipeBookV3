@@ -1,10 +1,10 @@
 <script>
     import {
         recipeStore,
-        storeUpdateRecipe,
-        storeIsRecipe,
-        storeSwapElements,
-        storeDeleteElement,
+        updateRecipeStore,
+        isRecipeStore,
+        swapElementsStore,
+        deleteElementStore,
     } from "../../stores/recipeStore.js";
     import Button from "../Button.svelte";
 
@@ -19,7 +19,7 @@
     }
 
     function updateElement() {
-        storeUpdateRecipe(element, newValue);
+        updateRecipeStore(element, newValue);
         if (element === "ingredients") {
             newValue = { name: "", quantity: null, unit: "" };
         } else {
@@ -28,22 +28,18 @@
     }
 
     let view = [];
-    $: if ($storeIsRecipe) {
+    $: if ($isRecipeStore) {
         view = $recipeStore[element];
     }
 
     function swap(currentIndex, newIndex) {
         if (newIndex >= 0 && newIndex < view.length) {
-            storeSwapElements(element, currentIndex, newIndex);
+            swapElementsStore(element, currentIndex, newIndex);
         }
-    }
-
-    function deleteListElement(index) {
-        storeDeleteElement(element, index);
     }
 </script>
 
-<section class={element}>
+<form class={element}>
     <h3>{title}</h3>
     <div>
         {#if element == "ingredients"}
@@ -74,10 +70,10 @@
                             on:click={() => swap(index, index + 1)}
                             disabled={index === view.length - 1}>↓</button
                         >
-                        <Button
-                            label={"Slett"}
-                            onClick={deleteListElement(index)}
-                        />
+                        <button
+                            on:click={() => deleteElementStore(element, index)}
+                            >slett</button
+                        >
                     </li>
                 {/each}
             {:else}
@@ -92,15 +88,19 @@
                             on:click={() => swap(index, index + 1)}
                             disabled={index === view.length - 1}>↓</button
                         >
+                        <button
+                            on:click={() => deleteElementStore(element, index)}
+                            >slett</button
+                        >
                     </li>
                 {/each}
             {/if}
         </ul>
     </div>
-</section>
+</form>
 
 <style>
-    section {
+    form {
         border: 1px solid black;
         margin: 0 1em 1em 0;
         padding: 1em;

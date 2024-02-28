@@ -1,7 +1,7 @@
 // pages/api/[id].js
 import { addRecipe, getRecipe, updateRecipe, deleteRecipe, searchRecipe, getRecipes } from '../../server';
 
-export default async function handler(req, res) {
+export async function apiId(req, res) {
     const { id } = req.query;
 
     switch (req.method) {
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 }
 
 // pages/api/search/[search].js
-export async function handler(req, res) {
+export async function apiSearch(req, res) {
     if (req.method !== 'GET') {
         res.status(405).end(`Method ${req.method} Not Allowed`);
         return;
@@ -58,7 +58,7 @@ export async function handler(req, res) {
 }
 
 // pages/api/newRecipe.js
-export async function handler(req, res) {
+export async function apiNewRecipe(req, res) {
     if (req.method !== 'POST') {
         res.status(405).end(`Method ${req.method} Not Allowed`);
         return;
@@ -74,6 +74,6 @@ export async function handler(req, res) {
 }
 
 // pages/api/test.js
-export default function handler(req, res) {
+export function test(req, res) {
     res.status(200).json({ Connection: 'success' });
 }

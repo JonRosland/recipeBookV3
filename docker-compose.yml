@@ -32,71 +32,29 @@ services:
     depends_on:
       - mongo
 
-  backend:
-    build:
-      context: backend
-      target: builder
-    ports:
-      - '4000:4000'
-    stop_signal: SIGINT
-    #    networks:
-    #      - mongonet
-    depends_on:
-      - mongo
-  frontend:
-    build:
-      context: frontend
-      #target: builder
-      #args:
-      #  - APP_IP=backend
-      #  - APP_PORT=4000
-    ports:
-      - '4321:4321'
-
+#  backend:
+#    build:
+#      context: backend
+#      target: builder
+#    ports:
+#      - '4000:4000'
+#    stop_signal: SIGINT
+#    #    networks:
+#    #      - mongonet
+#    depends_on:
+#      - mongo
+#  frontend:
+#    build:
+#      context: frontend
+#      #target: builder
+#      #args:
+#      #  - APP_IP=backend
+#      #  - APP_PORT=4000
+#    ports:
+#      - '4321:4321'
 #    networks:
 #      - mongonet
 
-#networks:
-#  network:
-#    driver: bridge
-#    ipv4_address: 10.5.0.5
-
-#recipebook:
-#  build:
-#    context: .
-#    dockerfile: Dockerfile
-#  ports:
-#    - "4321:4321"
-#environment:
-#  HOST: '0.0.0.0'
-#  PORT: 4321
-#backend:
-#  image: backend
-#  container_name: backend
-#  networks:
-#    - mongo
-#  ports:
-#    - "4000:4000"
-##mongo-express:
-##  image: mongo-express:latest
-##  container_name: mongo-express
-##  hostname: mongo-express
-##  restart: always
-##  environment:
-##    ME_CONFIG_MONGODB_ADMINUSERNAME: root
-##    ME_CONFIG_MONGODB_ADMINPASSWORD: root
-##    ME_CONFIG_MONGODB_SERVER: mongo
-##    ME_CONFIG_MONGODB_PORT: 27017
-##    ME_CONFIG_MONGODB_URL: "mongodb://mongo:27017"
-##  ports:
-##    - "8081:8081"
-##  networks:
-##    - mongo
-##  depends_on:
-##    - mongo
-##  links:
-##    - mongo
-#networks:
-#  mongonet:
-#    driver: bridge
-#
+networks:
+  mongonet:
+    driver: bridge

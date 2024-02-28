@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { apiGetRecipes } from "../components/APIFunctions.js";
+import { getRecipesApi } from "../components/APIFunctions.js";
 
 let recipes = [];
 
-recipes = await apiGetRecipes();
+recipes = await getRecipesApi();
 ---
 
 <Layout title="Alle oppskrifter" />

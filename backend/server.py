@@ -1,19 +1,15 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import json
-#from flask import jsonify
 
 def connectToDB():
-    client = MongoClient("mongodb://root:root@mongo:27017/")
-    print('about to connect')
+    #client = MongoClient("mongodb://root:root@mongo:27017/")
+    client = MongoClient('localhost', 27017, username='root', password='root')
     #client = MongoClient('mongo', 27017, username='root', password='root')
-    print('past')
     #client.server_info()
 
     db = client["RecipeDB"]
     db_recipe = db["Food"]
-
-    print('Connected to DB') 
 
     return db_recipe, client
 

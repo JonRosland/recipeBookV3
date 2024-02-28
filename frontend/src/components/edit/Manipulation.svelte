@@ -1,14 +1,14 @@
 <script>
     import {
-        apiUpdateRecipe,
-        apiGetRecipe,
-        apiPostRecipe,
+        updateRecipeApi,
+        getRecipeApi,
+        postRecipeApi,
     } from "../APIFunctions.js";
     import Button from "../Button.svelte";
     import {
-        storeIsRecipe,
-        storeSetRecipe,
-        storeGetRecipe,
+        isRecipeStore,
+        setRecipeStore,
+        getRecipeStore,
     } from "../../stores/recipeStore.js";
     let newRecipe = {
         recipeName: "Oppskrift Navn",
@@ -23,13 +23,13 @@
     let editRecipe = {};
     export let id = "";
     async function setRecipe() {
-        editRecipe = await apiGetRecipe(id);
-        await storeSetRecipe(editRecipe);
-        storeIsRecipe.set(true);
+        editRecipe = await getRecipeApi(id);
+        await setRecipeStore(editRecipe);
+        isRecipeStore.set(true);
     }
     async function setNewRecipe() {
-        await storeSetRecipe(newRecipe);
-        storeIsRecipe.set(true);
+        await setRecipeStore(newRecipe);
+        isRecipeStore.set(true);
     }
 
     if (id) {
@@ -40,12 +40,12 @@
 
     async function saveRecipe() {
         if (id) {
-            let newRecipe = storeGetRecipe();
-            await apiUpdateRecipe(editRecipe._id, newRecipe);
+            let newRecipe = getRecipeStore();
+            await updateRecipeApi(editRecipe._id, newRecipe);
             alert("Oppskrift oppdatert");
         } else if (!id) {
-            let newRecipe = storeGetRecipe();
-            const idRecipe = await apiPostRecipe(newRecipe);
+            let newRecipe = getRecipeStore();
+            const idRecipe = await postRecipeApi(newRecipe);
             alert("Oppskrift lagret med id: " + idRecipe.recipe_id);
             window.location.href = "/edit/" + idRecipe.recipe_id;
         }
