@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import IngredientView from "../../components/IngredientView.svelte";
 import { getRecipeApi } from "../../components/APIFunctions.js";
+import Improvement from "../../components/Improvement.svelte";
 const { id } = Astro.params;
 
 let recipe = {
@@ -54,7 +55,9 @@ recipe = await getRecipeApi(id);
       </div>
     </section>
   </div>
+  <Improvement client:load />
 </Layout>
+
 <style>
   .content {
     display: grid;

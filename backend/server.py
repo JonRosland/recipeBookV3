@@ -4,10 +4,9 @@ import json
 
 def connectToDB():
     #client = MongoClient("mongodb://root:root@mongo:27017/")
-    client = MongoClient('localhost', 27017, username='root', password='root')
+    client = MongoClient('10.0.0.10', 27017, username='root', password='root')
     #client = MongoClient('mongo', 27017, username='root', password='root')
     #client.server_info()
-
     db = client["RecipeDB"]
     db_recipe = db["Food"]
 

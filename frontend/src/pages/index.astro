@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getRecipesApi } from "../components/APIFunctions.js";
+import Improvement from "../components/Improvement.svelte";
 
 let recipes = [];
 
@@ -8,9 +9,9 @@ recipes = await getRecipesApi();
 ---
 
 <Layout title="Alle oppskrifter" />
-<a href="/newRecipe/"> Legg til ny oppskrift</a>
-<h1>Alle oppskrifter</h1><a href="/newRecipe/"> Legg til ny oppskrift</a>
-<a href="/newRecipe/"> Legg til ny oppskrift</a>
+<h1><a href="/newRecipe/"> Legg til ny oppskrift</a></h1>
+<h1>Alle oppskrifter</h1>
+
 <ul>
 	{
 		recipes.map((recipe) => (
@@ -20,5 +21,6 @@ recipes = await getRecipesApi();
 		))
 	}
 </ul>
+<Improvement client:load />
 <h2>I utvikling</h2>
 <p>Vil komme søkefunksjon</p>

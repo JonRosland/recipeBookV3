@@ -8,7 +8,15 @@
 
     export let title = "";
     export let element = "";
-    const _categorys = ["Middag", "Dessert", "Suppe", "Forett"];
+    const _categories = [
+        "Middag",
+        "Dessert",
+        "Suppe",
+        "Forett",
+        "Bakst",
+        "Kake",
+    ];
+    const _region = ["Asia", "Italia", "Frankrike", "Norge", "Annet"];
     let newValue = "";
     function updateElement() {
         updateRecipeStore(element, newValue);
@@ -19,15 +27,29 @@
     $: if ($isRecipeStore) {
         view = $recipeStore[element];
     }
+
+    $: if (element === "category" || element === "region") {
+        newValue = view;
+    }
+
+    $: if (newValue && (element === "category" || element === "region")) {
+        updateRecipeStore(element, newValue);
+    }
 </script>
 
-<form class={element}>
+<section class={element}>
     <h3>{title}</h3>
     <div>
-        {#if element == "category"}
+        {#if element === "category"}
             <select bind:value={newValue}>
-                {#each _categorys as val}
-                    <option value={view}>{val}</option>
+                {#each _categories as val}
+                    <option value={val}>{val}</option>
+                {/each}
+            </select>
+        {:else if element === "region"}
+            <select bind:value={newValue}>
+                {#each _region as val}
+                    <option value={val}>{val}</option>
                 {/each}
             </select>
         {:else}
@@ -38,10 +60,10 @@
             </div>
         {/if}
     </div>
-</form>
+</section>
 
 <style>
-    form {
+    section {
         border: 1px solid black;
         margin: 0 1em 1em 0;
         padding: 1em;

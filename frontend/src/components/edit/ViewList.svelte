@@ -39,7 +39,7 @@
     }
 </script>
 
-<form class={element}>
+<section class={element}>
     <h3>{title}</h3>
     <div>
         {#if element == "ingredients"}
@@ -97,10 +97,10 @@
             {/if}
         </ul>
     </div>
-</form>
+</section>
 
 <style>
-    form {
+    section {
         border: 1px solid black;
         margin: 0 1em 1em 0;
         padding: 1em;
